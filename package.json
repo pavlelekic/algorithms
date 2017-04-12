@@ -1,0 +1,15 @@
+{
+  "engines": {
+    "node" : "6.9.1"
+  },
+  "engineStrict" : true,
+  "dependencies": {
+    "bignumber.js": "4.0.0",
+    "jquery": "3.2.1",
+    "lodash": "4.17.4",
+    "underscore": "1.8.3"
+  },
+  "devDependencies": {
+    "mocha": "^3.2.0"
+  }
+}
