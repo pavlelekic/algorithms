@@ -1,8 +1,8 @@
 {
   "engines": {
-    "node" : "6.9.1"
+    "node": "6.9.1"
   },
-  "engineStrict" : true,
+  "engineStrict": true,
   "dependencies": {
     "bignumber.js": "4.0.0",
     "jquery": "3.2.1",
