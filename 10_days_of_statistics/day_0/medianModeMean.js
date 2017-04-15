@@ -1,11 +1,12 @@
 // @flow weak
 
+// time taken is n*log(n) because of sorting
+
 module.exports = function solution(input) {
     var lengthAndValues = input.split("\n");
     //var length = parseInt(lengthAndValues[0], 10);
     var numbersAsStrings = lengthAndValues[1].split(' ');
     var xs = numbersAsStrings.map(str => parseInt(str, 10));
-
 
     xs.sort((a,b) => a - b);
 
