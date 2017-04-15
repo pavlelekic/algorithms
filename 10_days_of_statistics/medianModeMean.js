@@ -10,29 +10,29 @@ module.exports = function solution(input) {
     xs.sort((a,b) => a - b);
 
     var maxNumberOfRepetitions = 0;
-    var currentNumberRepetitions = 0;
-    var currentNumber = xs[0];
-    var mode;
+    var previousNumberRepetitions = 0;
+    var previousNumber;
+    var mode = xs[0];
     var sum = 0;
     var length = xs.length;
 
     for (var i = 0; i < length; i++) {
         // mode finding section
-        if (xs[i] === currentNumber) {
+        if (xs[i] === previousNumber) {
             // the same number again
-            currentNumberRepetitions++;
+            previousNumberRepetitions++;
 
-            if (currentNumberRepetitions > maxNumberOfRepetitions) {
+            if (previousNumberRepetitions > maxNumberOfRepetitions) {
                 mode = xs[i];
-                maxNumberOfRepetitions = currentNumberRepetitions;
+                maxNumberOfRepetitions = previousNumberRepetitions;
             }
         }
         else {
             // new number
-            currentNumberRepetitions = 0;
+            previousNumberRepetitions = 0;
         }
 
-        currentNumber = xs[i];
+        previousNumber = xs[i];
         sum += xs[i];
     }
 

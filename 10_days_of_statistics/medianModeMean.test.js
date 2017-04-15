@@ -10,5 +10,12 @@ describe('10 Days of Statistics', function() {
 
             assert.equal(day0MedianModeMeanSolution(input), expectedOutput);
         });
+
+        it('Handles element repetitions correctly (mode)', function() {
+            var input = "5\n1 1 2 2 3";
+            var expectedOutput = "1.8\n2\n1";
+
+            assert.equal(day0MedianModeMeanSolution(input), expectedOutput);
+        });
     });
 });
