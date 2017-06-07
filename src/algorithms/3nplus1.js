@@ -1,7 +1,7 @@
-// @flow weak
+// @flow
 var length, maxLength = 0;
 
-export default function findMaxLength(lowerBound, upperBound) {
+export default function findMaxLength(lowerBound: number, upperBound: number) {
     for (var i = lowerBound; i <= upperBound; i++) {
         length = findLength(0, i);
 
