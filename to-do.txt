@@ -1,0 +1,8 @@
+- BFS
+- DFS
+- Graph API
+- Red Black search tree
+- quick sort
+- merge sort
+- heaps
+- priority queue
