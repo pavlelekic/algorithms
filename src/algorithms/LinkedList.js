@@ -4,22 +4,21 @@ export default class LinkedList {
 	lastItemRef = undefined;
 
 	push(value) {
-		if (lastItemRef) {
-			lastItemRef.nextItem = new ItemWithBackLink(value, undefined, lastItemRef);
-			lastItemRef = lastItemRef.nextItem;
+		if (this.lastItemRef) {
+			this.lastItemRef.nextItem = new ItemWithBackLink(value, undefined, this.lastItemRef);
+			this.lastItemRef = this.lastItemRef.nextItem;
 		} else {
 			this.__initilizeListWithValue(value);
-
 		}
 	}
 
 	pop() {
-		if (!lastItemRef) {
+		if (!this.lastItemRef) {
 			throw new Error("LinkedList is empty, pop() is not permitted on empty list!");
 		}
-		const value = lastItemRef.value;
-		lastItemRef = lastItemRef.previousItem;
-		lastItemRef.nextItem = undefined;
+		const value = this.lastItemRef.value;
+		this.lastItemRef = this.lastItemRef.previousItem;
+		this.lastItemRef.nextItem = undefined;
 		return value;
 	}
 

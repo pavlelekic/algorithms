@@ -1,4 +1,4 @@
-import LinkedList from '..algorithms/LinkedList';
+import LinkedList from '../algorithms/LinkedList';
 
 describe("LinkedList", function() {
 	let ll;
