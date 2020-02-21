@@ -18,7 +18,5 @@
   "homepage": "https://github.com/pavlelekic/algorithms#readme",
   "devDependencies": {},
   "dependencies": {
-    "jasmine": "^3.5.0",
-    "jasmine-es6": "^0.4.3"
   }
 }
