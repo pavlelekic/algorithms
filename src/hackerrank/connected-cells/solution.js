@@ -1,5 +1,17 @@
-const fs = require('fs');
+import { convertStringToArrayMatrix } from '../../helpers';
 
-const content = fs.readFileSync(`${process.cwd()}/matrix-input.txt`).toString();
 
-console.log(content);
+const solution = (inputMatrix) => {
+
+}
+
+const input = `0001100
+0100110
+1101001
+0000010
+1100000
+0001000`;
+
+const testMatrix = convertStringToArrayMatrix(input);
+
+solution(testMatrix);
