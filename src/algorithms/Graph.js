@@ -2,7 +2,10 @@
 
 export default class Graph {
 	constructor(capacity) {
-		this.adjacentVertices = new Uint32Array(capacity);
+		this.adjacentVertices = [];
+		for (let i = 0; i < capacity; i++) {
+			this.adjacentVertices.push(new Uint8Array());
+		}
 	}
 
 	addEdge(a, b) {
@@ -11,14 +14,12 @@ export default class Graph {
 	}
 
 	addAdjacentVertex(a, b) {
-		if (!Array.isArray(this.adjacentVertices[a])) {
-			this.adjacentVertices[a] = [];
-		}
-
 		this.adjacentVertices[a].push(b);
 	}
 
-	degree = (a) => Array.isArray(this.adjacentVertices[a]) ? this.adjacentVertices[a].length : 0;
+	degree = (a) => this.adjacentVertices[a].length;
 
-	numEdges = () => this.adjacentVertices.reduce((acc, curr) => acc + this.degree(curr), 0) / 2;
+	numEdges = () => this.adjacentVertices.reduce((acc, curr) => acc + curr.length, 0) / 2;
+
+	numVertices = () => this.adjacentVertices.length;
 }
