@@ -1,5 +1,5 @@
 
-export const convertStringToArrayMatrix = (stringInput) => {
+export const convertStringToMatrix = (stringInput) => {
 	const lines = stringInput.split("\n");
 
 	return lines.map(l => {
