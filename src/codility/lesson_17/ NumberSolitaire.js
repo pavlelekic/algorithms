@@ -1,4 +1,3 @@
-// take arr end
 
 function _bestSolution(arr, end, cache) {
 	if (typeof cache[end] !== 'undefined') return cache[end];
