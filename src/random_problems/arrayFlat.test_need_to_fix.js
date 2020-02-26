@@ -1,8 +1,7 @@
 import assert from 'assert';
-import {describe, it} from 'mocha';
 import {solution} from '../index';
 
-describe('arrayFlat()', () => {
+// describe('arrayFlat()', () => {
 	// it('should throw if argument #1 is not array', () => {
 	// 	assert.throws(() => arrayFlat(14), Error);
 	// });
@@ -18,4 +17,4 @@ describe('arrayFlat()', () => {
 	// it('[[[]]] -> []', () => {
 	// 	assert.deepEqual(arrayFlat([[[]]]), []);
 	// });
-});
+// });

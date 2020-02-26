@@ -3,10 +3,16 @@
 export default class Graph {
 	constructor(capacity) {
 		this.__adjacentVertices = [];
+		this.__visited = [];
 		for (let i = 0; i < capacity; i++) {
 			this.__adjacentVertices.push(new Uint8Array());
+			this.__visited.push(false);
 		}
 	}
+
+	isVisited = (a) => this.__visited[a];
+
+	setVisited = (a) => this.__visited[a] = true;
 
 	addEdge(a, b) {
 		this.__adjacentVertices[a].push(b);
