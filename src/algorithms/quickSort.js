@@ -7,14 +7,20 @@ function partition(arr, start, end) {
 		return arr;
 	}
 
+	if (end - start === 1) {
+		if (arr[end] < arr[start]) swap(start, end, arr);
+		return end;
+	}
+
 	const partitoningEl = arr[start];
 	let lo = start + 1;
 	let hi = end;
 
 	while(true) {
-		while (arr[hi] >= partitoningEl && lo < hi) hi--;
+		while (arr[hi] > partitoningEl && lo < hi) hi--;
 		while (arr[lo] <= partitoningEl && lo < hi) lo++;
 		if (lo === hi) {
+			swap(start, hi, arr);
 			return lo;
 		} else {
 			swap(lo, hi, arr);
