@@ -1,3 +1,4 @@
+import sameValuesArr from '../../algorithms/sameValuesArr';
 
 function _bestSolution(arr, end, cache) {
 	if (typeof cache[end] !== 'undefined') return cache[end];
@@ -17,10 +18,4 @@ function _bestSolution(arr, end, cache) {
 export default function solution(arr) {
 	const cache = sameValuesArr(undefined, arr.length);
 	return _bestSolution(arr, arr.length - 1, cache);
-}
-
-function sameValuesArr(value, size) {
-	const arr = [];
-	for (let i = 0; i < size; i++) arr.push(value);
-	return arr;
 }
