@@ -1,16 +1,33 @@
 import swap from "./swap";
 
-function _sort(arr, start, end) {
-	if (start === end) return;
-	if (end - start === 1) {
-		if (arr[end] < arr[start]) swap(start, end, arr);
-		return;
+export function merge(arr, tempArr, start, end) {
+	const middle = Math.floor(arr.length / 2);
+	let index = start;
+	let leftIndex = start;
+	let rightIndex = middle;
+	while (leftIndex < middle && rightIndex <= end) {
+		tempArr[index++] = arr[leftIndex] < arr[rightIndex] ? arr[leftIndex++] : arr[rightIndex++];
 	}
-	const middle = start + ((end - start) >> 1);
-	_sort(arr, start, middle);
-	_sort(arr, middle + 1, end);
+	let remainderStart = rightIndex;
+	let remainderEnd = end;
+	if (leftIndex < middle) {
+		remainderStart = leftIndex;
+		remainderEnd = middle - 1;
+	}
+	for (let i = remainderStart; i <= remainderEnd; i++) {
+		tempArr[index++] = arr[i];
+	}
+}
+
+function mergeSortRecursive(start, end, tempArr, arr) {
+
 }
 
 export default function mergeSort(arr) {
-	return _sort(arr, 0, arr.length - 1);
+	const tempArr = new Array(arr.length);
+	const middle = Math.floor(arr.length / 2);
+	mergeSortRecursive(0, middle, tempArr, arr);
+	mergeSortRecursive(middle + 1, arr.length - 1, tempArr, arr);
+	merge(arr, tempArr, start, end);
 }
+
