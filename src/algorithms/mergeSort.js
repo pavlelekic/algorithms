@@ -5,20 +5,24 @@ export function merge(arr, tempArr, start, end) {
 	let index = start;
 	let leftIndex = start;
 	let rightIndex = middle;
-	while (leftIndex < middle && rightIndex <= end) {
+
+	while (leftIndex < middle && rightIndex <= end)
 		tempArr[index++] = arr[leftIndex] < arr[rightIndex] ? arr[leftIndex++] : arr[rightIndex++];
-	}
+
+	// copy remaining elements
 	let remainderStart = rightIndex;
 	let remainderEnd = end;
 	if (leftIndex < middle) {
 		remainderStart = leftIndex;
 		remainderEnd = middle - 1;
 	}
-	for (let i = remainderStart; i <= remainderEnd; i++) {
+
+	for (let i = remainderStart; i <= remainderEnd; i++)
 		tempArr[index++] = arr[i];
-	}
+
 	// copy back to original
-	for (let i = 0; i < arr.length; i++) arr[i] = tempArr[i];
+	for (let i = 0; i < arr.length; i++)
+		arr[i] = tempArr[i];
 }
 
 function mergeSortRecursive(start, end, tempArr, arr) {
