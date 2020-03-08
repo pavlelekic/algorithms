@@ -21,19 +21,18 @@ export function merge(arr, tempArr, start, end) {
 		tempArr[index++] = arr[i];
 
 	// copy back to original
-	for (let i = 0; i < arr.length; i++)
+	for (let i = start; i < end; i++)
 		arr[i] = tempArr[i];
 }
 
 function mergeSortRecursive(start, end, tempArr, arr) {
-
-}
-
-export default function mergeSort(arr) {
-	const tempArr = new Array(arr.length);
-	const middle = Math.floor(arr.length / 2);
-	mergeSortRecursive(0, middle, tempArr, arr);
-	mergeSortRecursive(middle + 1, arr.length - 1, tempArr, arr);
+	if (start >= end) return;
+	const middle = start + Math.floor((end - start) / 2);
+	mergeSortRecursive(start, middle, tempArr, arr);
+	mergeSortRecursive(middle + 1, end, tempArr, arr);
 	merge(arr, tempArr, start, end);
 }
 
+export default function mergeSort(arr) {
+	mergeSortRecursive(0, arr.length - 1, new Array(arr.length), arr);
+}
