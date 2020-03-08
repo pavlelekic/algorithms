@@ -17,6 +17,8 @@ export function merge(arr, tempArr, start, end) {
 	for (let i = remainderStart; i <= remainderEnd; i++) {
 		tempArr[index++] = arr[i];
 	}
+	// copy back to original
+	for (let i = 0; i < arr.length; i++) arr[i] = tempArr[i];
 }
 
 function mergeSortRecursive(start, end, tempArr, arr) {
