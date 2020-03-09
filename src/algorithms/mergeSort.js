@@ -1,7 +1,6 @@
-import swap from "./swap";
 
 export function merge(arr, tempArr, start, end) {
-	const middle = Math.floor(arr.length / 2);
+	const middle = start + Math.floor((end - start) / 2);
 	let index = start;
 	let leftIndex = start;
 	let rightIndex = middle;
