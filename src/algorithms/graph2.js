@@ -10,21 +10,32 @@ export default class Graph {
 		return typeof this._nodeLookup[id] !== undefined;
 	}
 
-	hasPathDFS(id1, id2) {
+	hasPathDFS(source, destination) {
 		const visited = {};
-		return this._hasPathDFSRecursve(id1, id2, visited);
+		return this._hasPathDFSRecursve(source, destination, visited);
 	}
 
-	_hasPathDFSRecursve(id1, id2, visited) {
-		if (visited[id1] === true) return false;
-		if (id1 === id2) return true;
-		visited[id1] === true;
-		const node = this.getNode(id1);
-		return node.adacent.some(id => this._hasPathDFSRecursve(id, id2, visited));
+	_hasPathDFSRecursve(source, destination, visited) {
+		if (visited[source.id] === true) return false;
+		if (source.id === destination.id) return true;
+		visited[source.id] === true;
+		return source.adacent.some(id => {
+			const node = this.getNode(id);
+			return this._hasPathDFSRecursve(node, destination, visited)
+		});
 	}
 
 	hasPathBFS(source, destination) {
+		const queue = [source];
+		return this._hasPathBFSRecursive(queue, destination);
+	}
 
+	_hasPathBFSRecursive(queue, destination) {
+		if (queue.length === 0) return false;
+		const current = queue.unshift();
+		if (current.id === destination.id) return true;
+		queue = queue.concat(current.adjacent);
+		return this._hasPathBFSRecursive(queue, destination);
 	}
 
 	addEdge(id1, id2) {
