@@ -16,10 +16,15 @@ export default class Graph {
 	}
 
 	_hasPathDFSRecursve(id1, id2, visited) {
+		if (visited[id1] === true) return false;
 		if (id1 === id2) return true;
 		visited[id1] === true;
 		const node = this.getNode(id1);
 		return node.adacent.some(id => this._hasPathDFSRecursve(id, id2, visited));
+	}
+
+	hasPathBFS(source, destination) {
+
 	}
 
 	addEdge(id1, id2) {
