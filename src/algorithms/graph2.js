@@ -10,6 +10,31 @@ export default class Graph {
 		return typeof this._nodeLookup[id] !== undefined;
 	}
 
+	_dfsMarkConnectedRecursive(node, visited, marker) {
+		if (typeof visited[node.id] !== 'undefined') return;
+		visited[node.id] = marker;
+		let node;
+		node.adjacent.forEach(id => {
+			node = this.getNode(id);
+			this._dfsMarkConnectedRecursive(node, visited, marker);
+		});
+	}
+
+	findConnectedComponents() {
+		const marker = 0;
+		const visited = {};
+		let node;
+		for (let id in this._nodeLookup) {
+			if (typeof visited[id] === undefined) {
+				node = this.getNode(id);
+				this._dfsMarkConnectedRecursive(node, visited, marker);
+			}
+		}
+		return function isConnected(id1, id2) {
+			return visited[id1] === visited[id2];
+		};
+	}
+
 	hasPathDFS(source, destination) {
 		const visited = {};
 		return this._hasPathDFSRecursve(source, destination, visited);
