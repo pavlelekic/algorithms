@@ -27,7 +27,7 @@ export default class Graph {
 		for (let id in this._nodeLookup) {
 			if (typeof visited[id] === undefined) {
 				node = this.getNode(id);
-				this._dfsMarkConnectedRecursive(node, visited, marker);
+				this._dfsMarkConnectedRecursive(node, visited, ++marker);
 			}
 		}
 		return function isConnected(id1, id2) {
