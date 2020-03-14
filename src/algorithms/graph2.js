@@ -51,16 +51,22 @@ export default class Graph {
 	}
 
 	hasPathBFS(source, destination) {
+		const visited = {};
 		const queue = [source];
-		return this._hasPathBFSRecursive(queue, destination);
-	}
+		let current;
 
-	_hasPathBFSRecursive(queue, destination) {
-		if (queue.length === 0) return false;
-		const current = queue.unshift();
-		if (current.id === destination.id) return true;
-		queue = queue.concat(current.adjacent);
-		return this._hasPathBFSRecursive(queue, destination);
+		while (queue.length > 0) {
+			current = queue.shift();
+			visited[current.id] = true;
+			if (current.id === destination.id) return true;
+			current.adjacent.forEach(id => {
+				if (!visited[id]) {
+					queue.push(id);
+				}
+			});
+		}
+
+		return false;
 	}
 
 	addEdge(id1, id2) {
