@@ -1,49 +1,23 @@
 import Graph from './Graph';
 
-export default class DFS {
-	constructor(graph) {
-		this.graph = graph;
-	}
-
-	findPath(a, endNode) {
-
-	}
-}
-
-function dfs(graph, currentNode, endNode, pathStack = []) {
-	pathStack.push(currentNode);
+function isConnected(graph, currentNode, endNode) {
+	graph.setVisited(currentNode);
 
 	if (currentNode === endNode) {
-		return pathStack;
+		return true;
 	}
 
-	graph.setVisited(currentNode);
 	let adjacent = graph.adjacent(currentNode);
+	let hasFound = false;
 
 	for (let i = 0; i < adjacent.length; i++) {
 		if (!graph.isVisited(adjacent[i])) {
-			return dfs(graph, adjacent[i], endNode, pathStack);
+			hasFound = dfs(graph, adjacent[i], endNode, pathStack);
+			if (hasFound) return true;
 		}
 	}
-
-	pathStack.pop();
-	return pathStack;
-
-	.forEach(adj => {
-		if (!graph.isVisited(adj)) {
-			if (adj === endNode) {
-				return pathStack;
-			} else {
-				dfs()
-			}
-		}
-	});
 }
 
-
-
-
-
-
-
-
+export default function dfs(graph, startNode, endNode) {
+	return isConnected(graph, currentNode, endNode, pathStack = []);
+}
