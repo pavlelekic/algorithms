@@ -31,14 +31,14 @@ class Heap {
     }
 
     _bubbleDown(index) {
-        const leftChildIndex= getLeftChildIndex(index);
-        const rightChildIndex= getRightChildIndex(index);
+        const leftChildIndex = this._calcLeftChildIndex(index);
+        const rightChildIndex = this._calcRightChildIndex(index);
         const i = this.items;
         const comparison = this.comparerFn(i[leftChildIndex], i[rightChildIndex]);
 
         if (comparison === 1) {
             this._swap(leftChildIndex, index);
-            return this._bubbleDown(leftChildIndex);
+            return this._bubbletDown(leftChildIndex);
         }
         if (comparison === -1) {
             this._swap(rightChildIndex, index);
@@ -48,8 +48,16 @@ class Heap {
         return index;
     }
 
+    _calcLeftChildIndex(parentIndex) {
+        return parentIndex * 2;
+    }
+
+    _calcRightChildIndex(parentIndex) {
+        return parentIndex * 2 + 1;
+    }
+
     _calcParentIndex(index) {
-        return Math.ceil((index - 2) / 2);
+        return Math.floor(index / 2);
     }
 
     _swap(indexA, indexB) {
