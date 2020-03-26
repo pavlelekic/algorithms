@@ -1,5 +1,5 @@
 
-class MinHeap {
+class Heap {
     _items = [];
 
     constructor(comparerFn) {
@@ -7,25 +7,23 @@ class MinHeap {
     }
 
     insertItem(newItem) {
-        const newItemIndex = this._items.length;
-        _items.push(newItem);
-        return this._bubbleUp(newItemIndex);
+        this._items.push(newItem);
+        return this._bubbleUp(this._items.length - 1);
     }
 
     _bubbleUp(index) {
-        const parentIndex = this._getParentIndex(index);
-        const parent = this._items[index];
+        const parentIndex = this._calcParentIndex(index);
+        const parent = this._items[parentIndex];
+        const newItem = this._items[index];
 
         if (this.comparerFn(parent, newItem) === -1) {
             this._swap(parentIndex, index);
-
-            if (!this._hasParent(parentIndex)) {
+            if (this._hasParent(parentIndex)) {
                 return this._bubbleUp(parentIndex);
             }
             else {
                 return parentIndex;
             }
-
         }
         else {
             return index;
@@ -50,7 +48,7 @@ class MinHeap {
         return index;
     }
 
-    _getParentIndex(index) {
+    _calcParentIndex(index) {
         return Math.ceil((index - 2) / 2);
     }
 
@@ -60,11 +58,11 @@ class MinHeap {
         this._items[indexB] = tmp;
     }
 
-    getMin() {
+    getTopItem() {
         return this._items[0];
     }
 
-    removeMinItem() {
+    removeTopItem() {
         const lastItem = this._items.pop();
         this._items[0] = lastItem;
         this._bubbleDown(0);
