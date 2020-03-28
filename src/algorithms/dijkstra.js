@@ -3,9 +3,9 @@ import sameValuesArr from './sameValuesArr';
 export default function dijkstra(graph, startingVertex) {
     const previousVertex = new Uint8Array(capacity);
     const shortestDistanceFromStartingVertex = sameValuesArr(Number.POSITIVE_INFINITY, graph.capacity());
+    shortestDistanceFromStartingVertex[startingVertex] = 0;
     const queue = [startingVertex];
     const visited = sameValuesArr(false, graph.capacity());
-    shortestDistanceFromStartingVertex[startingVertex] = 0;
 
     let w, currentNode;
     while(queue.length > 0) {
