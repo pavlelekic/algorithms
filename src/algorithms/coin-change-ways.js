@@ -18,5 +18,11 @@ export default function solution(denominationsArr, N) {
 		});
 	}
 
-	return numWays[N];
+	let sum = 0;
+	const ways = numWays[N];
+	denominationsArr.forEach(denomination => {
+		sum += ways[denomination] ? ways[denomination] : 0;
+	});
+
+	return sum;
 }
