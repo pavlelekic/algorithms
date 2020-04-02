@@ -60,4 +60,6 @@ export default class MinHeap {
 	}
 
 	isEmpty = () => this.__heap.length === 1;
+
+	size = () => this.__heap.length - 1;
 }
