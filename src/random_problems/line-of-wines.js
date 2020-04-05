@@ -10,11 +10,7 @@ export default function solution(arr) {
         if (typeof cache[l][r] === 'undefined') {
             const year = l + arr.length - r;
 
-            if (l === r) {
-                return arr[l] * year;
-            }
-    
-            cache[l][r] = Math.max(
+            cache[l][r] = l === r ? arr[l] * year : Math.max(
                 maxRevenueSoFar(l+1, r) + arr[l] * year,
                 maxRevenueSoFar(l, r-1) + arr[r] * year
             );
