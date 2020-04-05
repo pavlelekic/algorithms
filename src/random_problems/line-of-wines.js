@@ -7,7 +7,7 @@ export default function solution(arr) {
     }
 
     function maxRevenueSoFar(l, r) {
-        if (!cache[l][r]) {
+        if (typeof cache[l][r] === 'undefined') {
             const year = l + arr.length - r;
 
             if (l === r) {
