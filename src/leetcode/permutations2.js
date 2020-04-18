@@ -23,6 +23,8 @@ export default function solution(arr) {
     for (let i = 0; i < arr.length; i++) {
         used[i] = false;
     }
+    arr.sort((a, b) => a - b);
+    console.log(arr);
     dfs(arr, used, result, []);
     return result;
 }
