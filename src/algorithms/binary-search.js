@@ -1,6 +1,6 @@
 
 function findIndex(sortedArr, value, lo, hi) {
-    if (lo >= hi) return lo;
+    if (lo > hi) return -1;
     const middle = lo + Math.floor((hi - lo) / 2);
     if (value === sortedArr[middle]) {
         return middle;
