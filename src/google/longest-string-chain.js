@@ -5,7 +5,7 @@ function isSomewhatSimilar(strA, strB) {
 	const larger = strA.length < strB.length ? strB : strA;
 
 	let longerStringIndex = 0;
-	const skippedChar = false;
+	let skippedChar = false;
 	for (let i = 0; i < smaller.length; i++) {
 		if (smaller[i] !== larger[longerStringIndex++]) {
 			if (skippedChar) return false;
