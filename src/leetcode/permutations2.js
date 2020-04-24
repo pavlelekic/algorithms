@@ -24,7 +24,6 @@ export default function solution(arr) {
         used[i] = false;
     }
     arr.sort((a, b) => a - b);
-    console.log(arr);
     dfs(arr, used, result, []);
     return result;
 }

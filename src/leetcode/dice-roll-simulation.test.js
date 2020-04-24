@@ -1,6 +1,6 @@
 import diceRoll from './dice-roll-simulation';
 
-describe("Find all triplets that sum to 0", () => {
+describe.skip("Find all triplets that sum to 0", () => {
     const problems = [
         // {
         //     input: {

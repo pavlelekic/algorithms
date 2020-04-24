@@ -11,7 +11,7 @@ import quicksort from './quickSort2';
 // 	testSort(arr, quicksort);
 // });
 
-test('Test sorting #2', () => {
+test.skip('Test sorting #2', () => {
 	const arr = [1, 0, 1, 9];
 	testSort(arr, quicksort);
 });

@@ -8,10 +8,10 @@ function testMerge(arr) {
   expect(arr).toEqual(cloneSorted);
 }
 
-// test('Merge two sorted halves #1', () => {
-// 	const arr = [2, 5, 1, 9];
-// 	testMerge(arr);
-// });
+test.skip('Merge two sorted halves #1', () => {
+	const arr = [2, 5, 1, 9];
+	testMerge(arr);
+});
 
 // test('Merge two sorted halves #2', () => {
 // 	const arr = [2, 4, 5, 1, 3, 9];
