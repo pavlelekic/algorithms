@@ -19,11 +19,7 @@ function dfs(numbers, used, result, path) {
 
 export default function solution(arr) {
     const result = [];
-    const used = new Array(arr.length);
-    for (let i = 0; i < arr.length; i++) {
-        used[i] = false;
-    }
     arr.sort((a, b) => a - b);
-    dfs(arr, used, result, []);
+    dfs(arr, {}, result, []);
     return result;
 }

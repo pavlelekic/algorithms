@@ -3,26 +3,21 @@ function dfs(numbers, used, result, path) {
     if (path.length === numbers.length) {
         const pathClone = path.slice(0);
         result.push(pathClone);
-        return;
+    } else {
+        numbers.forEach((num, index) => {
+            if (!used[index]) {
+                used[index] = true;
+                path.push(num);
+                dfs(numbers, used, result, path);
+                path.pop();
+                used[index] = false;
+            }
+        });
     }
-
-    numbers.forEach((num, index) => {
-        if (!used[index]) {
-            used[index] = true;
-            path.push(num);
-            dfs(numbers, used, result, path);
-            path.pop();
-            used[index] = false;
-        }
-    });
 }
 
 export default function solution(arr) {
     const result = [];
-    const used = new Array(arr.length);
-    for (let i = 0; i < arr.length; i++) {
-        used[i] = false;
-    }
-    dfs(arr, used, result, []);
+    dfs(arr, {}, result, []);
     return result;
 }
