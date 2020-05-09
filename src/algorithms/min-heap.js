@@ -5,11 +5,17 @@ export default class MinHeap {
 		this.__heap = [ 0 ]; // this element is ignored because indexing starts from 1, not 0
 	}
 
-	__calcParentIndex = (childIndex) => Math.floor(childIndex / 2);
+	__calcParentIndex(childIndex) {
+		return Math.floor(childIndex / 2);
+	}
 
-	__calcLeftChildIndex = (parentIndex) => parentIndex * 2;
+	__calcLeftChildIndex(parentIndex) {
+		return parentIndex * 2;
+	}
 
-	__calcRightChildIndex = (parentIndex) => parentIndex * 2 + 1;
+	__calcRightChildIndex(parentIndex) {
+		return parentIndex * 2 + 1;
+	}
 
 	__bubbleUp(index) {
 		if (index === 1) return; // you reached the top
