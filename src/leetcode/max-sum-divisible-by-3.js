@@ -6,6 +6,7 @@ export default function(nums) {
     nums.forEach(n => {
         prevMaxes = currentMaxes.slice();
         let potentialNewMax;
+    
         prevMaxes.forEach(prevMax => {
             potentialNewMax = n + prevMax;
             currentMaxes[potentialNewMax % 3] = Math.max(currentMaxes[potentialNewMax % 3], potentialNewMax);

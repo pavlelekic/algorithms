@@ -1,27 +1,27 @@
 // [-1, 0, 1, 2, -1, -4],
 
-export default function sum3(arr) {
-    if (!Array.isArray(arr)) return [];
-    arr.sort((a, b) => a - b);
-    const dictionary = {};
+export default function sum3(nums) {
+    if (!Array.isArray(nums)) return [];
+    nums.sort((a, b) => a - b);
+    const numOcurrencesCount = {};
     let el;
-    for (let i = 0; i < arr.length; i++) {
-        el = arr[i];
-        dictionary[el] = typeof dictionary[el] === 'undefined' ? 1 : dictionary[el] + 1;
+    for (let i = 0; i < nums.length; i++) {
+        el = nums[i];
+        numOcurrencesCount[el] = typeof numOcurrencesCount[el] === 'undefined' ? 1 : numOcurrencesCount[el] + 1;
     }
     const result = [];
-    let sum2;
-    const I = arr.length - 2;
-    const J = arr.length - 1;
+    let target;
+    const I = nums.length - 2;
+    const J = nums.length - 1;
     let r;
-    for (let i = 0; i < I; i++) {
-        for (let j = i + 1; j < J; j++) {
-            sum2 = -(arr[i] + arr[j]);
+    for (let l = 0; l < I; l++) {
+        for (let j = l + 1; j < J; j++) {
+            target = -(nums[l] + nums[j]);
             r = result.length === 0 ? null : result[result.length - 1];
-            if (dictionary[sum2] > 0 && sum2 > arr[j] &&
-                (result.length === 0 || (r[0] !== arr[i] || r[1] !== arr[j] || r[2] !== sum2))
+            if (numOcurrencesCount[target] > 0 && target > nums[j] &&
+                (result.length === 0 || (r[0] !== nums[l] || r[1] !== nums[j] || r[2] !== target))
             ) {
-                result.push([arr[i], arr[j], sum2]);
+                result.push([nums[l], nums[j], target]);
             }
         }
     }
