@@ -19,7 +19,7 @@ function dfs(numbers, used, result, path) {
 
 export default function solution(arr) {
     const result = [];
-    arr.sort((a, b) => a - b);
+    arr.sort((a, b) => a - b); // is this necessary?
     dfs(arr, {}, result, []);
     return result;
 }
