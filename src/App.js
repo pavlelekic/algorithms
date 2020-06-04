@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import moment from 'moment';
 
 /*
 *Code test*
@@ -13,62 +14,73 @@ We're going to make a basic homepage
 
 */
 
-function addZeroIfNeeded(val) {
-	return val < 10 ? `0${val}` : val;
+const containerStyle = {
+	display: 'flex',
+	flexDirection: 'column',
+	width: '100%',
+	height: '100%',
+	alignItems: 'center',
+	justifyContent: 'center'
+};
+
+export default function TestPage(props) {
+	const [isLocal, setIsLocal] = useState(true);
+	const [imageUrl, setImageUrl] = useState('');
+
+	const handleLocalToggleClick = () => setIsLocal(!isLocal);
+	const currentTime = isLocal ? moment() : moment.utc(new Date());
+
+	return (
+		<main style={containerStyle}>
+			<section>
+				<header>{currentTime.format('HH:mm:ss')}</header>
+				<button onClick={handleLocalToggleClick}>{isLocal ? 'Local' : 'UTC'}</button>
+			</section>
+			<img src={imageUrl}/>
+		</main>
+
+	);
 }
 
-class TestPage extends React.PureComponent {
-	state = {
-		timestamp: new Date().getTime(),
-		isLocal: true,
-		imageUrl: ''
-	};
+// class TestPage extends React.PureComponent {
+// 	state = {
+// 		timestamp: new Date().getTime(),
+// 		isLocal: true,
+// 		imageUrl: ''
+// 	};
 
-	componentDidMount() {
-		this.intervalID = setInterval(() => {
-			const date = new Date();
-			if (date.getSeconds() % 10 === 0) {
-				fetch('https://picsum.photos/200/300')
-					.then((response) => {
-						this.setState({imageUrl: response.url});
-					});
-			}
-			this.setState({
-				timestamp: date.getTime()
-			});
-		}, 700);
-	}
+// 	componentDidMount() {
+// 		this.intervalID = setInterval(() => {
+// 			const date = new Date();
+// 			if (date.getSeconds() % 10 === 0) {
+// 				fetch('https://picsum.photos/200/300')
+// 					.then((response) => {
+// 						this.setState({imageUrl: response.url});
+// 					});
+// 			}
+// 			this.setState({
+// 				timestamp: date.getTime()
+// 			});
+// 		}, 700);
+// 	}
 
-	componentWillUnmount() {
-		clearInterval(this.intervalID);
-	}
+// 	componentWillUnmount() {
+// 		clearInterval(this.intervalID);
+// 	}
 
-	toggleIsLocal = () => this.setState((s) => ({isLocal: !s.isLocal}));
+// 	toggleIsLocal = () => this.setState((s) => ({isLocal: !s.isLocal}));
 
-	static containerStyle = {display: 'flex', flexDirection: 'column', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center'};
 
-	render() {
-		const date = new Date(this.state.timestamp);
-		const seconds = addZeroIfNeeded(date.getSeconds());
-		const minutes = addZeroIfNeeded(date.getMinutes());
-		const hours = addZeroIfNeeded(this.state.isLocal ? date.getHours() : date.getUTCHours());
+// 	render() {
+// 		const date = new Date(this.state.timestamp);
+// 		const seconds = addZeroIfNeeded(date.getSeconds());
+// 		const minutes = addZeroIfNeeded(date.getMinutes());
+// 		const hours = addZeroIfNeeded(this.state.isLocal ? date.getHours() : date.getUTCHours());
 
-		return (
-			<div style={TestPage.containerStyle}>
-				<span>{`${hours}:${minutes}:${seconds}`}</span>
-				<label forHtml="local">
-					<input
-						name="local"
-						type="checkbox"
-						checked={this.state.isLocal}
-						onClick={this.toggleIsLocal}
-					/>
-					Local?
-				</label>
-				<img src={this.state.imageUrl}/>
-			</div>
-		);
-	}
-}
+// 		return (
 
-export default TestPage;
+// 		);
+// 	}
+// }
+
+// export default TestPage;
