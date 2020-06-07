@@ -25,7 +25,6 @@ describe("MinHeap", () => {
                 actual.push(mh.getTopItem());
                 mh.removeTopItem();
             }
-            console.log({expected, actual});
             expect(expected).toEqual(actual);
         });
     });

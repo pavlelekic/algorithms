@@ -40,7 +40,6 @@ export default class MinHeap {
 
 	__bubbleDown(index) {
 		if (this.__isLastLevel(index)) return;
-		// console.log(`Bubbling down item ${this.__heap[index]}, ${JSON.stringify(this.__heap)}`);
 		const leftChildIndex = this.__calcLeftChildIndex(index);
 		const rightChildIndex = this.__calcRightChildIndex(index);
 
@@ -49,7 +48,6 @@ export default class MinHeap {
 		} else {
 			this.__swapSmallerAndBubbleDown(rightChildIndex, index);
 		}
-		// console.log(`Heap after bubble down ${JSON.stringify(this.__heap)}`);
 	}
 
 	__swapSmallerAndBubbleDown(childIndex, parentIndex) {
@@ -68,7 +66,6 @@ export default class MinHeap {
 	insert(value) {
 		this.__heap.push(value);
 		this.__bubbleUp(this.__lastElIndex());
-		// console.log(`Inserted ${value}`, this.__heap);
 	}
 
 	getTopItem = () => this.__heap[1];
