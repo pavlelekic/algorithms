@@ -8,15 +8,15 @@
  */
 /**
  * @param {TreeNode} root
- * @param {number}g k
+ * @param {number} k
  * @return {number}
  */
 
 function findKSmallest(node, stack, k) {
     if (stack.length === k || node === null) return;
-    findKSmallest(node.left);
+    findKSmallest(node.left, stack, k);
     if (stack.length < k) stack.push(node.val);
-    findKSmallest(node.right);
+    findKSmallest(node.right, stack, k);
 }
 
 var kthSmallest = function(root, k) {
