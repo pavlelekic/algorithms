@@ -1,5 +1,5 @@
 
-export default class MinHeap {
+export default class Heap {
 	constructor(compareFn) {
 		this.__compareFn = compareFn;
 		this.__heap = [ 0 ]; // this element is ignored because indexing starts from 1, not 0

@@ -18,29 +18,62 @@ const containerStyle = {
 	display: 'flex',
 	flexDirection: 'column',
 	width: '100%',
-	height: '100%',
+	height: '100vh',
 	alignItems: 'center',
 	justifyContent: 'center'
 };
 
-export default function TestPage(props) {
-	const [isLocal, setIsLocal] = useState(true);
-	const [imageUrl, setImageUrl] = useState('');
+function formatTime(timestamp, isLocal) {
+  const date = new Date(timestamp * 1000);;
+  const currentTime = isLocal ? moment(date) : moment.utc(date);
+  return currentTime.format('HH:mm:ss');
+}
 
-	const handleLocalToggleClick = () => setIsLocal(!isLocal);
-	const currentTime = isLocal ? moment() : moment.utc(new Date());
+function getUnixTimestamp() {
+  const date = new Date();
+  return Math.trunc(date.getTime() / 1000);
+}
+
+export default React.memo(function TestPage() {
+  const [isLocal, setIsLocal] = useState(true);
+  const [timestamp, setTimestamp] = useState(getUnixTimestamp());
+	const [imageUrl, setImageUrl] = useState('');
+  
+  useEffect(() => {
+    let lastRAFId;
+    const updateTimestamp = () => {
+      const currentTimestamp = getUnixTimestamp();
+      if (currentTimestamp !== timestamp) {
+        setTimestamp(currentTimestamp);
+      } else {
+        lastRAFId = window.requestAnimationFrame(updateTimestamp);
+      }
+    };
+    lastRAFId = window.requestAnimationFrame(updateTimestamp);
+    return () => window.cancelAnimationFrame(lastRAFId);
+  });
+
+  useEffect(() => {
+    const date = new Date();
+    if (date.getSeconds() % 10 === 0) {
+      fetch('https://picsum.photos/200/300')
+        .then(response => setImageUrl(response.url))
+        .catch(console.log);
+    }
+  });
 
 	return (
 		<main style={containerStyle}>
 			<section>
-				<header>{currentTime.format('HH:mm:ss')}</header>
-				<button onClick={handleLocalToggleClick}>{isLocal ? 'Local' : 'UTC'}</button>
+        <header>{formatTime(timestamp, isLocal)}</header>
+				<button onClick={() => setIsLocal(!isLocal)}>
+          {isLocal ? 'Local' : 'UTC'}
+        </button>
 			</section>
 			<img src={imageUrl}/>
 		</main>
-
 	);
-}
+});
 
 // class TestPage extends React.PureComponent {
 // 	state = {

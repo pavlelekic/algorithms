@@ -1,8 +1,8 @@
-import MinHeap from './min-heap';
+import Heap from './heap';
 
 const numCompare = (a, b) => a - b;
 
-describe("MinHeap", () => {
+describe("Heap", () => {
     const inputs = [
         [-1, 0],
         [0, -1],
@@ -18,7 +18,7 @@ describe("MinHeap", () => {
         expected.sort(numCompare);
 
         it(`should retrieve ${JSON.stringify(input)} in sorted order ${JSON.stringify(expected)}`, () => {
-            const mh = new MinHeap(numCompare);
+            const mh = new Heap(numCompare);
             input.forEach(i => mh.insert(i));
             const actual = [];
             while (mh.size() > 0) {
