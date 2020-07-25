@@ -43,15 +43,12 @@ export default React.memo(function TestPage() {
     let lastRAFId;
     const updateTimestamp = () => {
       const currentTimestamp = getUnixTimestamp();
-      if (currentTimestamp !== timestamp) {
-        setTimestamp(currentTimestamp);
-      } else {
-        lastRAFId = window.requestAnimationFrame(updateTimestamp);
-      }
+      setTimestamp(currentTimestamp);
+      lastRAFId = window.requestAnimationFrame(updateTimestamp);
     };
     lastRAFId = window.requestAnimationFrame(updateTimestamp);
     return () => window.cancelAnimationFrame(lastRAFId);
-  });
+  }, []);
 
   useEffect(() => {
     const date = new Date();
